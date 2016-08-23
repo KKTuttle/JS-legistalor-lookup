@@ -1,0 +1,22 @@
+<button {{action "toggleChamber" }}>House/Senate</button>
+
+<!-- <h2>Committee list</h2>
+{{#each committees as |committee|}}
+  {{display-committee committee = committee}}
+{{/each}} -->
+
+{{#if showSenate}}
+  <h2>Senate committees</h2>
+  {{#each senateCommittees as |committee|}}
+    {{#unless committee.subcommittee}}
+      {{#link-to 'subcommittee' committee.commitee_id}}{{committee.committee_id}}{{display-committee committee = committee}}{{/link-to}}
+    {{/unless}}
+  {{/each}}
+{{else}}
+  <h2>House committees</h2>
+  {{#each houseCommittees as |committee|}}
+    {{#unless committee.subcommittee}}
+      {{display-committee committee = committee}}
+    {{/unless}}
+  {{/each}}
+{{/if}}
